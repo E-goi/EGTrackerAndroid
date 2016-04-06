@@ -17,10 +17,6 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Init the framework
-        EGTracker.sharedInstance().initEngine(MainActivity.this);
-        EGTracker.sharedInstance().trackEvent("APP_OPEN");
-
         // Track custom events
         Button trackButton = (Button) findViewById(R.id.trackAction);
         trackButton.setOnClickListener(new Button.OnClickListener() {
@@ -46,5 +42,9 @@ public class MainActivity extends Activity {
                 alert.show();
             }
         });
+
+        // Init the framework
+        EGTracker.sharedInstance().initEngine(MainActivity.this);
+        EGTracker.sharedInstance().trackEvent("APP_OPEN");
     }
 }

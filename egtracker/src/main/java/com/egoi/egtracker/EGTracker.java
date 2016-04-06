@@ -61,8 +61,10 @@ public class EGTracker {
         log("Initing engine...");
 
         this.context = context;
+        this.configurations = new EGConfigurations();
         this.dateFormat = new SimpleDateFormat("dd-MM-yyyy hh:MM:ss", Locale.getDefault());
-        this.configurations.timestamp = Long.valueOf(System.currentTimeMillis() / 1000).toString();
+        Long tsLong = System.currentTimeMillis()/1000;
+        this.configurations.timestamp = tsLong.toString();
         this.configurations._id = generateRandomHashString();
         setScreenSize();
 
@@ -211,7 +213,7 @@ public class EGTracker {
         Random r = new Random();
 
         for (int i = 0 ; i < 16 ; i ++ ) {
-            returnString = returnString + sourceArray[r.nextInt(16)];
+            returnString = returnString + sourceArray[r.nextInt(15)];
         }
 
         log("Generated hash string: " + returnString);
@@ -225,7 +227,7 @@ public class EGTracker {
      */
     private void log(String text) {
         if (this.logActive) {
-            Log.i("E-Goi Tracker: %s", text);
+            Log.i("EGTracker", "E-Goi Tracker: " + text);
         }
     }
 
